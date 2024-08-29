@@ -1,0 +1,8 @@
+{
+  "ERROR": "Échec",
+  "NOT_FOUND": "Non trouvé",
+  "FORBIDDEN": "Vous n'êtes pas autorisé à effectuer cette demande",
+  "TOKEN_MISSING": "Jeton manquant",
+  "TOKEN_INVALID": "Jeton invalide",
+  "TOKEN_EXPIRED": "Jeton expiré"
+}

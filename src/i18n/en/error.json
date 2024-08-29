@@ -1,0 +1,8 @@
+{
+  "ERROR": "Failed",
+  "NOT_FOUND": "Not found",
+  "FORBIDDEN": "You are not allowed to make this request",
+  "TOKEN_MISSING": "Token missing",
+  "TOKEN_INVALID": "Token invalid",
+  "TOKEN_EXPIRED": "Token expired"
+}
