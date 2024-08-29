@@ -1,4 +1,4 @@
-import IAccount from './account';
-import { IDevice } from './device';
+import Account from './account';
+import Device from './device';
 
-export { IAccount, IDevice };
+export { Account, Device };

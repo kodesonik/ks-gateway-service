@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
   IsString,
@@ -9,20 +10,25 @@ import {
 } from 'class-validator';
 
 export class CompleteProfileDto {
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   lastname: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   firstname: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   username: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsEmail()
+  @Transform(({ value }) => value.toLowerCase())
   email: string;
 
   //country ISO code
@@ -33,9 +39,11 @@ export class CompleteProfileDto {
   // @IsOptional()
   // role: string;
 
+  @ApiProperty()
   @Transform(({ value }) => new Date(value))
   @IsDate()
   // Set max date Must have 10yrs old
+  @ApiProperty()
   @MaxDate(
     new Date(
       new Date().getFullYear() - 10,
@@ -47,6 +55,7 @@ export class CompleteProfileDto {
   @IsOptional()
   birthdate: Date;
 
+  @ApiProperty()
   @IsString()
   @IsOptional()
   address: string;

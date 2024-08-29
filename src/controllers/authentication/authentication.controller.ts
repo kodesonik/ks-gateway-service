@@ -1,6 +1,21 @@
 import { Public } from './../../decorators/public.decorator';
-import { Controller, Post, Body, Inject, Get, Req } from '@nestjs/common';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import {
+  Controller,
+  Post,
+  Body,
+  Inject,
+  Get,
+  Req,
+  InternalServerErrorException,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiHeader,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { LoginDto } from './dto/login.dto';
@@ -12,8 +27,15 @@ import { VerifyOtpDto } from './dto/verify-otp.dto';
 import { Temporary } from 'src/decorators/temporary.decorator';
 import { CompleteProfileDto } from './dto/complete-profile.dto';
 import { ConfirmAccountDto } from './dto/confirm-account.dto';
+import { AuthResponse, ResponseCode } from 'src/types';
 
 @ApiTags('Authentication')
+@ApiHeader({
+  name: 'x-lang',
+  description: 'Language',
+  required: false,
+  example: 'en',
+})
 @Controller('auth')
 export class AuthenticationController {
   constructor(
@@ -21,11 +43,11 @@ export class AuthenticationController {
   ) {}
 
   // Login
-  @ApiBody({ type: LoginDto })
+  @ApiOkResponse({ type: AuthResponse })
   @Public()
   @Post('login')
   async login(@Body() loginDto: LoginDto) {
-    console.log('dto', loginDto);
+    // console.log('dto', loginDto);
     const res = await firstValueFrom(
       this.authService.send({ cmd: 'login' }, loginDto),
     );
@@ -34,17 +56,27 @@ export class AuthenticationController {
   }
 
   // Register
-  @ApiBody({ type: RegisterDto })
+  @ApiOkResponse({ type: AuthResponse })
   @Public()
   @Post('register')
-  async register(@Body() registerDto: RegisterDto) {
-    const res = await lastValueFrom(
-      this.authService.send({ cmd: 'register' }, registerDto),
-    );
-    return res;
+  async register(@Body() registerDto: RegisterDto): Promise<AuthResponse> {
+    try {
+      const res = await lastValueFrom(
+        this.authService.send({ cmd: 'register' }, registerDto),
+      );
+      if (res.error) {
+        throw new Error(res.error);
+      }
+      return res;
+    } catch (error) {
+      console.log('error', error);
+      throw new InternalServerErrorException(ResponseCode.ERROR);
+    }
   }
 
   // Verify Email
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: AuthResponse })
   @Temporary()
   @Post('confirm-account')
   async confirmAccount(
@@ -61,6 +93,9 @@ export class AuthenticationController {
   }
 
   // Profile
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: AuthResponse })
   @Get('profile')
   async profile(@Req() req: any) {
     const user = req.user;
@@ -83,6 +118,7 @@ export class AuthenticationController {
   }
 
   // Logout
+  @ApiBearerAuth()
   @Post('logout')
   async logout(@Req() req: any) {
     const user = req.user;
@@ -116,6 +152,7 @@ export class AuthenticationController {
   }
 
   // verify Otp
+  @ApiBearerAuth()
   @Temporary()
   @Post('verify-otp')
   async verifyOtp(@Req() req, @Body() verifyOtp: VerifyOtpDto) {
@@ -129,6 +166,7 @@ export class AuthenticationController {
   }
 
   // Complete Profile
+  @ApiBearerAuth()
   @Post('complete-profile')
   async completeProfile(
     @Req() req,

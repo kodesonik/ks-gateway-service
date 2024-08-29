@@ -13,7 +13,9 @@ export class LangExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const i18nCtx = I18nContext.current<I18nTranslation>();
-    console.log('current lang', i18nCtx?.lang);
+    // console.log('response', exception);
+    // console.log('current lang', i18nCtx?.lang);
+
     const status = exception.getStatus();
     const data = exception.getResponse() as any;
     const apiReponse: IErrorResponse = {

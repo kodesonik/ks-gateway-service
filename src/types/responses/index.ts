@@ -1,4 +1,5 @@
+import { AuthResponse } from './auth-response';
 import { IErrorResponse } from './error-response';
 import { IDocsResponse } from './docs-response';
 import { IDocResponse } from './doc-response';
-export { IDocResponse, IDocsResponse, IErrorResponse };
+export { IDocResponse, IDocsResponse, IErrorResponse, AuthResponse };

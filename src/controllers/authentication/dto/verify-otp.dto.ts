@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, MaxLength, MinLength } from 'class-validator';
-import { IDevice } from 'src/types/models/device';
+import { Device } from 'src/types';
 
 export class VerifyOtpDto {
   @ApiProperty()
@@ -10,5 +10,5 @@ export class VerifyOtpDto {
   otp: string;
 
   @ApiProperty()
-  device: IDevice;
+  device: Device;
 }
