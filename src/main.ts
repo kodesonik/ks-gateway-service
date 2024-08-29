@@ -33,8 +33,8 @@ async function bootstrap() {
     ['/docs', '/docs-json'],
     basicAuth({
       challenge: true,
-      // users: { [process.env.DOCS_USER]: process.env.DOCS_PASSWORD },
-      users: { admin: 'admin' },
+      users: { [process.env.DOCS_USER]: process.env.DOCS_PASSWORD },
+      // users: { admin: 'admin' },
     }),
   );
   const config = new DocumentBuilder()
