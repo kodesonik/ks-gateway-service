@@ -40,7 +40,7 @@ Content-Type: application/json
 Authorization: {{bearer}} {{confirm_token}}
 
 {
-    "otp": "621486"
+    "otp": "648344"
 }
 ###
 

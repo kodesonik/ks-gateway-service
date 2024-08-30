@@ -15,4 +15,5 @@ export enum ResponseCode {
   TOKEN_INVALID = 'error.TOKEN_INVALID',
   TOKEN_EXPIRED = 'error.TOKEN_EXPIRED',
   FORBIDDEN = 'error.FORBIDDEN',
+  INAVLID_PARAMETER = 'error.INAVLID_PARAMETER',
 }
