@@ -59,7 +59,7 @@ POST {{base_url}}/auth/login
 Content-Type: application/json
 
 {
-    "username": "johndoe17",
+    "username": "k0d3.s0n1k@gmail.com",
     "password": "password"
 }
 ###
