@@ -20,10 +20,10 @@ export class CompleteProfileDto {
   @IsString()
   firstname: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
-  username: string;
+  // @ApiProperty()
+  // @IsNotEmpty()
+  // @IsString()
+  username?: string;
 
   @ApiProperty()
   @IsNotEmpty()

@@ -64,6 +64,7 @@ export class AuthenticationController {
     @Req() req,
     @Body() confirmAccountDto: ConfirmAccountDto,
   ) {
+    console.log('confirmAccountDto', req.user);
     return await msResponseFormatter(
       this.authService.send(
         { cmd: 'confirm-account' },
