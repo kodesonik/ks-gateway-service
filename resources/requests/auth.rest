@@ -59,8 +59,8 @@ POST {{base_url}}/auth/login
 Content-Type: application/json
 
 {
-    "username": "k0d3.s0n1k@gmail.com",
-    "password": "password"
+    "username": "root",
+    "password": "fnyky1rj"
 }
 ###
 
@@ -68,7 +68,7 @@ Content-Type: application/json
 GET {{base_url}}/auth/profile HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: {{bearer}} {{access_token}}
+Authorization: {{bearer}} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDgzYzEyY2UyNmIwZjM3Y2JhOGFjMyIsImxhc3RuYW1lIjoicm9vdCIsImZpcnN0bmFtZSI6InJvb3QiLCJ1c2VybmFtZSI6InJvb3QiLCJwaG9uZSI6MjI4OTI5NDI2MDEsImVtYWlsIjoiYXJvYW1hZG91MUBnbWFpbC5jb20iLCJnZW5kZXIiOiJVIiwicm9sZSI6ImFkbWluIiwiZGVmYXVsdFVzZXJuYW1lIjpmYWxzZSwiYXV0aE1ldGhvZHMiOltdLCJwYXNzd29yZCI6IiQyYiQxMCRuT0F5QkpCVDRTYlYuck5lcjlJQ1llNEJjNWZzMXFJRUEweERmT3Q1L2lnVFJ6WmpFb2YuTyIsImlzQWN0aXZlIjp0cnVlLCJjb21wbGV0ZWQiOmZhbHNlLCJpbnRlcmVzdHMiOltdLCJkZWxldGVkQXQiOm51bGwsImNyZWF0ZWRBdCI6IjIwMjQtMDktMDRUMTA6NTM6MDYuNTE1WiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMDRUMTA6NTM6MDYuNTE1WiIsImlhdCI6MTcyNTQ0NzQwMCwiZXhwIjoxNzI1NDUxMDAwfQ.qgZoAuZL1EpogrM4nm7MJ14FQ_PogIkuBsBRLSSPSo8
 ###
 
 
@@ -158,7 +158,7 @@ POST {{base_url}}/auth/verify-phone
 Content-Type: application/json
 
 {
-    "phone": "+22892942601"
+    "phone": "+22871255635"
 }
 ###
 
@@ -168,7 +168,7 @@ Content-Type: application/json
 Authorization: {{bearer}} {{otp_token}}
 
 {
-    "otp": "483008",
+    "otp": "471819",
     "device": {
         "id": "skdfsjdfhkw23232",
         "platform": "android",
@@ -182,7 +182,7 @@ Authorization: {{bearer}} {{otp_token}}
 # @name complete_profile
 POST {{base_url}}/auth/complete-profile
 Content-Type: application/json
-Authorization: {{bearer}} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2NiOTE5MzY0ODMwOTk0NGIyMmIwMSIsInVzZXJuYW1lIjoiKzIyODkyOTQyNjAxMTkxNiIsInBob25lIjoyMjg5Mjk0MjYwMSwiZ2VuZGVyIjoiVSIsInJvbGUiOiJ1c2VyIiwiZGVmYXVsdFVzZXJuYW1lIjp0cnVlLCJhdXRoTWV0aG9kcyI6WyJwaG9uZSJdLCJpc0FjdGl2ZSI6dHJ1ZSwiaW50ZXJlc3RzIjpbXSwiY3JlYXRlZEF0IjoiMjAyNC0wOC0yNlQxNzoxOToyMS42MTRaIiwidXBkYXRlZEF0IjoiMjAyNC0wOC0yNlQxNzoxOToyMS42MTRaIiwiaWF0IjoxNzI0Njk0NTgzLCJleHAiOjE3MjQ2OTgxODN9.vQ5ZmpIw3VJMqlFcktAop-wV3FtsIEPj3qi8V_UYuco
+Authorization: {{bearer}} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDFmZjU4ZjEyYzA4ZjY1ZGQ0MDc1ZCIsInVzZXJuYW1lIjoiKzIyODcxMjU1NjM1NDIzMCIsInBob25lIjoyMjg3MTI1NTYzNSwiZ2VuZGVyIjoiVSIsInJvbGUiOiJ1c2VyIiwiZGVmYXVsdFVzZXJuYW1lIjp0cnVlLCJhdXRoTWV0aG9kcyI6WyJwaG9uZSJdLCJpc0FjdGl2ZSI6dHJ1ZSwiY29tcGxldGVkIjpmYWxzZSwiaW50ZXJlc3RzIjpbXSwiY3JlYXRlZEF0IjoiMjAyNC0wOC0zMFQxNzoyMDoyNC42NzBaIiwidXBkYXRlZEF0IjoiMjAyNC0wOC0zMFQxNzoyMDoyNC42NzBaIiwiaWF0IjoxNzI1MDM4NDI0LCJleHAiOjE3MjUwNDIwMjR9.UBe6_iXIFGJaBRvl40nylV1xftE46hoXkrD0YGIO8Jc
 
 {
     "firstname": "John",
@@ -190,7 +190,8 @@ Authorization: {{bearer}} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2NiO
     "username": "johndoe17",
     "email": "aroamadou@gmail.com",
     "birthdate": "2010-01-01",
-    "address": "Jl. Jend. Sudirman No. 1"
+    "address": "Jl. Jend. Sudirman No. 1",
+    "interests": ["football", "music", "dance"]
 }
 ###
 

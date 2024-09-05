@@ -1,0 +1,93 @@
+#variables
+@base_url = http://localhost/api/v1
+@access_token = Bearer {{refreshToken.response.body.access_token}}
+@refresh_token = {{login.response.body.refresh_token}}
+
+# @name login
+POST {{base_url}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "root",
+  "password": "fnyky1rj"
+}
+###
+
+# @name refreshToken
+POST {{base_url}}/auth/refresh
+Content-Type: application/json
+
+{
+  "refresh_token": "{{refresh_token}}"
+}
+###
+
+# @name get_users
+GET {{base_url}}/user?skip=0&limit=10&sort=firstname,lastname&order=DESC
+Authorization: {{access_token}}
+x-lang: fr
+###
+
+# @name get_trashed_users
+GET {{base_url}}/user/trashed?skip=0&limit=10&sort=firstname,lastname&order=DESC
+Authorization: {{access_token}}
+x-lang: fr
+###
+
+# @name get_user_by_id
+GET {{base_url}}/user/66d1ff2cf12c08f65dd40756
+Authorization: {{access_token}}
+x-lang: fr
+###
+
+# @name create_user
+POST {{base_url}}/user
+Authorization: {{access_token}}
+x-lang: fr
+Content-Type: application/json
+
+{
+  "firstname": "John",
+  "lastname": "Doe",
+  "email": "dev@bkgspeed.com",
+  "username": "dev",
+  "phone": "+22890090909",
+  "role": "admin"
+}
+###
+
+# @name update_user
+PATCH {{base_url}}/user/66d89b5584ce3d3e3f61866b
+Authorization: {{access_token}}
+x-lang: fr
+Content-Type: application/json
+
+{
+  "firstname": "Johny",
+  "lastname": "DEPP"
+}
+###
+
+# @name delete_user
+DELETE {{base_url}}/user/66d89b5584ce3d3e3f61866b
+Authorization: {{access_token}}
+x-lang: fr
+###
+
+# @name restore_user
+PATCH {{base_url}}/user/restore/66d89b5584ce3d3e3f61866b
+Authorization: {{access_token}}
+x-lang: fr
+###
+
+# @name activate_user
+PATCH {{base_url}}/user/activate/66d89b5584ce3d3e3f61866b
+Authorization: {{access_token}}
+x-lang: fr
+###
+
+# @name deactivate_user
+PATCH {{base_url}}/user/deactivate/66d89b5584ce3d3e3f61866b
+Authorization: {{access_token}}
+x-lang: fr
+###

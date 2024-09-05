@@ -6,7 +6,7 @@ import { firstValueFrom } from 'rxjs';
 
 export async function msResponseFormatter(request: any) {
   const res: any = await makeRequest(request);
-  console.log(res);
+  // console.log(res);
   if (res.error) {
     if (res.status >= 400 && res.status < 500) {
       throw new BadRequestException(res.error);
