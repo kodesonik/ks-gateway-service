@@ -15,6 +15,7 @@ import {
 } from 'nestjs-i18n';
 import { join } from 'path';
 import { UserController } from './controllers/user/user.controller';
+import { UploadModule } from './modules/upload/upload.module';
 // import { UserController } from './controllers/user/user.controller';
 
 @Module({
@@ -38,6 +39,7 @@ import { UserController } from './controllers/user/user.controller';
       ],
       inject: [ConfigService],
     }),
+    UploadModule,
   ],
   controllers: [AppController, AuthenticationController, UserController],
   providers: [

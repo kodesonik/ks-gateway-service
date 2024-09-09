@@ -8,17 +8,27 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { ClientProxy } from '@nestjs/microservices';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
-import { RefreshTokenDto } from './dto/refresh-token.dto';
-import { SendOtpDto } from './dto/send-otp.dto';
-import { VerifyPhoneDto } from './dto/verify-phone.dto';
-import { VerifyOtpDto } from './dto/verify-otp.dto';
 import { Temporary } from 'src/decorators/temporary.decorator';
-import { CompleteProfileDto } from './dto/complete-profile.dto';
-import { ConfirmAccountDto } from './dto/confirm-account.dto';
 import { AuthResponse } from 'src/types';
 import { msResponseFormatter } from 'src/helpers';
+import {
+  LoginDto,
+  RegisterDto,
+  RefreshTokenDto,
+  SendOtpDto,
+  VerifyPhoneDto,
+  VerifyOtpDto,
+  CompleteProfileDto,
+  ConfirmAccountDto,
+  ForgotPasswordDto,
+  ResetPasswordDto,
+  ChangePasswordDto,
+  DeleteAccountDto,
+  ConfirmChangeDto,
+} from './dto';
+import { ChangeEmailDto } from './dto/change-email.dto';
+import { ChangePhoneDto } from './dto/change-phone.dto';
+import { ChangeUsernameDto } from './dto/change-username.dto';
 
 @ApiTags('Authentication')
 @ApiHeader({
@@ -152,6 +162,145 @@ export class AuthenticationController {
       this.authService.send(
         { cmd: 'complete-profile' },
         { completeProfileDto, user: req.user },
+      ),
+    );
+  }
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Username changed successfully' })
+  @Post('change-username')
+  async changeUsername(
+    @Req() req,
+    @Body() changeUsernameDto: ChangeUsernameDto,
+  ) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'change-username' },
+        { id: req.user._id, username: changeUsernameDto.username },
+      ),
+    );
+  }
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Email change initiated' })
+  @Post('change-email')
+  async changeEmail(@Req() req, @Body() changeEmailDto: ChangeEmailDto) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'change-email' },
+        { id: req.user._id, email: changeEmailDto.email },
+      ),
+    );
+  }
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Phone change initiated' })
+  @Post('change-phone')
+  async changePhone(@Req() req, @Body() changePhoneDto: ChangePhoneDto) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'change-phone' },
+        { id: req.user._id, phone: changePhoneDto.phone },
+      ),
+    );
+  }
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Email change confirmed' })
+  @Post('confirm-change-email')
+  async confirmChangeEmail(
+    @Req() req,
+    @Body() confirmChangeDto: ConfirmChangeDto,
+  ) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'confirm-change-email' },
+        { id: req.user._id, otp: confirmChangeDto.otp },
+      ),
+    );
+  }
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Phone change confirmed' })
+  @Post('confirm-change-phone')
+  async confirmChangePhone(
+    @Req() req,
+    @Body() confirmChangeDto: ConfirmChangeDto,
+  ) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'confirm-change-phone' },
+        { id: req.user._id, otp: confirmChangeDto.otp },
+      ),
+    );
+  }
+
+  @Public()
+  @ApiOkResponse({ description: 'Password reset initiated' })
+  @Post('forgot-password')
+  async forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'forgot-password' },
+        { credential: forgotPasswordDto.credential },
+      ),
+    );
+  }
+
+  @Public()
+  @ApiOkResponse({ description: 'Password reset successful' })
+  @Post('reset-password')
+  async resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'reset-password' },
+        { token: resetPasswordDto.token, password: resetPasswordDto.password },
+      ),
+    );
+  }
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Password changed successfully' })
+  @Post('change-password')
+  async changePassword(
+    @Req() req,
+    @Body() changePasswordDto: ChangePasswordDto,
+  ) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'change-password' },
+        {
+          id: req.user._id,
+          oldPassword: changePasswordDto.oldPassword,
+          newPassword: changePasswordDto.newPassword,
+        },
+      ),
+    );
+  }
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Account deletion initiated' })
+  @Post('delete-account')
+  async deleteAccount(@Req() req, @Body() deleteAccountDto: DeleteAccountDto) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'delete-account' },
+        { id: req.user._id, password: deleteAccountDto.password },
+      ),
+    );
+  }
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Account deletion confirmed' })
+  @Post('confirm-delete-account')
+  async confirmDeleteAccount(
+    @Req() req,
+    @Body() confirmChangeDto: ConfirmChangeDto,
+  ) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'confirm-delete-account' },
+        { id: req.user._id, otp: confirmChangeDto.otp },
       ),
     );
   }
