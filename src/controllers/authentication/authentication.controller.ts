@@ -3,6 +3,7 @@ import { Controller, Post, Body, Inject, Get, Req } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
+  ApiBody,
   ApiHeader,
   ApiOkResponse,
   ApiOperation,
@@ -333,6 +334,7 @@ export class AuthenticationController {
   }
 
   @ApiOperation({ summary: 'Check username availability' })
+  @ApiBody({ schema: { properties: { username: { type: 'string' } } } })
   @ApiOkResponse({ description: 'Username availability checked' })
   @Public()
   @Post('check-username')
@@ -343,6 +345,7 @@ export class AuthenticationController {
   }
 
   @ApiOperation({ summary: 'Check email availability' })
+  @ApiBody({ schema: { properties: { email: { type: 'string' } } } })
   @ApiOkResponse({ description: 'Email availability checked' })
   @Public()
   @Post('check-email')
@@ -353,6 +356,7 @@ export class AuthenticationController {
   }
 
   @ApiOperation({ summary: 'Check phone number availability' })
+  @ApiBody({ schema: { properties: { phone: { type: 'string' } } } })
   @ApiOkResponse({ description: 'Phone number availability checked' })
   @Public()
   @Post('check-phone')
