@@ -5,6 +5,7 @@ import {
   ApiBearerAuth,
   ApiHeader,
   ApiOkResponse,
+  ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
 import { ClientProxy } from '@nestjs/microservices';
@@ -44,6 +45,7 @@ export class AuthenticationController {
   ) {}
 
   // Login
+  @ApiOperation({ summary: 'Login' })
   @ApiOkResponse({ type: AuthResponse })
   @ApiBadRequestResponse({ description: 'Invalid credentials' })
   @Public()
@@ -56,6 +58,7 @@ export class AuthenticationController {
   }
 
   // Register
+  @ApiOperation({ summary: 'Register' })
   @ApiOkResponse({ type: AuthResponse })
   @Public()
   @Post('register')
@@ -67,6 +70,7 @@ export class AuthenticationController {
 
   // Verify Email
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Confirm Account' })
   @ApiOkResponse({ type: AuthResponse })
   @Temporary()
   @Post('confirm-account')
@@ -86,6 +90,7 @@ export class AuthenticationController {
   // Profile
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get profile' })
   @ApiOkResponse({ type: AuthResponse })
   @Get('profile')
   async profile(@Req() req: any) {
@@ -98,6 +103,8 @@ export class AuthenticationController {
   }
 
   // Refresh Token
+  @ApiOperation({ summary: 'Refresh Token' })
+  @ApiOkResponse({ description: 'Token refreshed successfully' })
   @Public()
   @Post('refresh')
   async refresh(@Body() refreshTokenDto: RefreshTokenDto) {
@@ -109,6 +116,8 @@ export class AuthenticationController {
 
   // Logout
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Logout' })
+  @ApiOkResponse({ description: 'Logout successful' })
   @Post('logout')
   async logout(@Req() req: any) {
     const user = req.user;
@@ -118,6 +127,8 @@ export class AuthenticationController {
   }
 
   // Send Otp
+  @ApiOperation({ summary: 'Send OTP' })
+  @ApiOkResponse({ description: 'OTP sent successfully' })
   @Public()
   @Post('send-otp')
   async verifyPhone(@Body() sendOtpDto: SendOtpDto) {
@@ -127,6 +138,8 @@ export class AuthenticationController {
   }
 
   // verify Phone
+  @ApiOperation({ summary: 'Verify Phone' })
+  @ApiOkResponse({ description: 'Phone verified successfully' })
   @Public()
   @Post('verify-phone')
   async sendOtp(@Body() verifyPhoneDto: VerifyPhoneDto) {
@@ -140,6 +153,8 @@ export class AuthenticationController {
 
   // verify Otp
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Verify OTP' })
+  @ApiOkResponse({ description: 'OTP verified successfully' })
   @Temporary()
   @Post('verify-otp')
   async verifyOtp(@Req() req, @Body() verifyOtp: VerifyOtpDto) {
@@ -153,6 +168,8 @@ export class AuthenticationController {
 
   // Complete Profile
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Complete profile' })
+  @ApiOkResponse({ description: 'Profile completed successfully' })
   @Post('complete-profile')
   async completeProfile(
     @Req() req,
@@ -167,6 +184,7 @@ export class AuthenticationController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Change username' })
   @ApiOkResponse({ description: 'Username changed successfully' })
   @Post('change-username')
   async changeUsername(
@@ -182,6 +200,7 @@ export class AuthenticationController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Change email' })
   @ApiOkResponse({ description: 'Email change initiated' })
   @Post('change-email')
   async changeEmail(@Req() req, @Body() changeEmailDto: ChangeEmailDto) {
@@ -194,6 +213,7 @@ export class AuthenticationController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Change phone number' })
   @ApiOkResponse({ description: 'Phone change initiated' })
   @Post('change-phone')
   async changePhone(@Req() req, @Body() changePhoneDto: ChangePhoneDto) {
@@ -206,6 +226,7 @@ export class AuthenticationController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Confirm email change' })
   @ApiOkResponse({ description: 'Email change confirmed' })
   @Post('confirm-change-email')
   async confirmChangeEmail(
@@ -221,6 +242,7 @@ export class AuthenticationController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Confirm phone change' })
   @ApiOkResponse({ description: 'Phone change confirmed' })
   @Post('confirm-change-phone')
   async confirmChangePhone(
@@ -235,8 +257,9 @@ export class AuthenticationController {
     );
   }
 
-  @Public()
+  @ApiOperation({ summary: 'Forgot password' })
   @ApiOkResponse({ description: 'Password reset initiated' })
+  @Public()
   @Post('forgot-password')
   async forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
     return await msResponseFormatter(
@@ -247,8 +270,9 @@ export class AuthenticationController {
     );
   }
 
-  @Public()
+  @ApiOperation({ summary: 'Reset password' })
   @ApiOkResponse({ description: 'Password reset successful' })
+  @Public()
   @Post('reset-password')
   async resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
     return await msResponseFormatter(
@@ -260,6 +284,7 @@ export class AuthenticationController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Change password' })
   @ApiOkResponse({ description: 'Password changed successfully' })
   @Post('change-password')
   async changePassword(
@@ -279,6 +304,7 @@ export class AuthenticationController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Initiate account deletion' })
   @ApiOkResponse({ description: 'Account deletion initiated' })
   @Post('delete-account')
   async deleteAccount(@Req() req, @Body() deleteAccountDto: DeleteAccountDto) {
@@ -291,6 +317,7 @@ export class AuthenticationController {
   }
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Confirm account deletion' })
   @ApiOkResponse({ description: 'Account deletion confirmed' })
   @Post('confirm-delete-account')
   async confirmDeleteAccount(
@@ -302,6 +329,36 @@ export class AuthenticationController {
         { cmd: 'confirm-delete-account' },
         { id: req.user._id, otp: confirmChangeDto.otp },
       ),
+    );
+  }
+
+  @ApiOperation({ summary: 'Check username availability' })
+  @ApiOkResponse({ description: 'Username availability checked' })
+  @Public()
+  @Post('check-username')
+  async checkUsername(@Body() checkUsernameDto: { username: string }) {
+    return await msResponseFormatter(
+      this.authService.send({ cmd: 'check-username' }, checkUsernameDto),
+    );
+  }
+
+  @ApiOperation({ summary: 'Check email availability' })
+  @ApiOkResponse({ description: 'Email availability checked' })
+  @Public()
+  @Post('check-email')
+  async checkEmail(@Body() checkEmailDto: { email: string }) {
+    return await msResponseFormatter(
+      this.authService.send({ cmd: 'check-email' }, checkEmailDto),
+    );
+  }
+
+  @ApiOperation({ summary: 'Check phone number availability' })
+  @ApiOkResponse({ description: 'Phone number availability checked' })
+  @Public()
+  @Post('check-phone')
+  async checkPhone(@Body() checkPhoneDto: { phone: string }) {
+    return await msResponseFormatter(
+      this.authService.send({ cmd: 'check-phone' }, checkPhoneDto),
     );
   }
 }
