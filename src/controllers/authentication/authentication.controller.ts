@@ -88,6 +88,22 @@ export class AuthenticationController {
     );
   }
 
+  // resend confirmation account code
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Resend confirmation account code' })
+  @ApiOkResponse({
+    description: 'Confirmation account code resent successfully',
+  })
+  @Post('resend-confirmation-code')
+  async resendConfirmationAccountCode(@Req() req: any) {
+    return await msResponseFormatter(
+      this.authService.send(
+        { cmd: 'resend-confirmation-code' },
+        { userId: req.user._id },
+      ),
+    );
+  }
+
   // Profile
 
   @ApiBearerAuth()

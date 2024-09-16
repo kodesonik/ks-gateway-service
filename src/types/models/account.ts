@@ -46,4 +46,7 @@ export default class Account {
 
   @ApiProperty()
   lastLogin: Date;
+
+  @ApiProperty()
+  referedBy: string;
 }

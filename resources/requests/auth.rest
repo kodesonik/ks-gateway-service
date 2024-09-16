@@ -29,7 +29,8 @@ Content-Type: application/json
     "password": "password",
     "phone": "+22892942604",
     "birthdate": "2010-01-01",
-    "address": "Jl. Jend. Sudirman No. 1"
+    "address": "Jl. Jend. Sudirman No. 1",
+    "parrain": "dse4543f"
 }
 ### 
 
@@ -40,7 +41,7 @@ Content-Type: application/json
 Authorization: {{bearer}} {{confirm_token}}
 
 {
-    "otp": "648344"
+    "otp": "772479"
 }
 ###
 

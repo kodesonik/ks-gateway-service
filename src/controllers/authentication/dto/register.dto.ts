@@ -53,4 +53,9 @@ export class RegisterDto {
   @IsNotEmpty()
   @IsString()
   password: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  referedBy: string;
 }
