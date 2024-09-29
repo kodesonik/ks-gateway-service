@@ -22,15 +22,11 @@ POST {{base_url}}/auth/register
 Content-Type: application/json
 
 {
-    "firstname": "AMADOU",
-    "lastname": "Arouna",
-    "email": "k0d3.s0n1k@gmail.com",
-    "username": "ks",
+    "firstname": "ABALO",
+    "lastname": "Koffi",
+    "email": "bkgdevs03@gmail.com",
     "password": "password",
-    "phone": "+22892942604",
-    "birthdate": "2010-01-01",
-    "address": "Jl. Jend. Sudirman No. 1",
-    "parrain": "dse4543f"
+    "phone": "+22892942605"
 }
 ### 
 
@@ -41,7 +37,7 @@ Content-Type: application/json
 Authorization: {{bearer}} {{confirm_token}}
 
 {
-    "otp": "772479"
+    "otp": "101034"
 }
 ###
 
@@ -69,7 +65,7 @@ Content-Type: application/json
 GET {{base_url}}/auth/profile HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Authorization: {{bearer}} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDgzYzEyY2UyNmIwZjM3Y2JhOGFjMyIsImxhc3RuYW1lIjoicm9vdCIsImZpcnN0bmFtZSI6InJvb3QiLCJ1c2VybmFtZSI6InJvb3QiLCJwaG9uZSI6MjI4OTI5NDI2MDEsImVtYWlsIjoiYXJvYW1hZG91MUBnbWFpbC5jb20iLCJnZW5kZXIiOiJVIiwicm9sZSI6ImFkbWluIiwiZGVmYXVsdFVzZXJuYW1lIjpmYWxzZSwiYXV0aE1ldGhvZHMiOltdLCJwYXNzd29yZCI6IiQyYiQxMCRuT0F5QkpCVDRTYlYuck5lcjlJQ1llNEJjNWZzMXFJRUEweERmT3Q1L2lnVFJ6WmpFb2YuTyIsImlzQWN0aXZlIjp0cnVlLCJjb21wbGV0ZWQiOmZhbHNlLCJpbnRlcmVzdHMiOltdLCJkZWxldGVkQXQiOm51bGwsImNyZWF0ZWRBdCI6IjIwMjQtMDktMDRUMTA6NTM6MDYuNTE1WiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMDRUMTA6NTM6MDYuNTE1WiIsImlhdCI6MTcyNTQ0NzQwMCwiZXhwIjoxNzI1NDUxMDAwfQ.qgZoAuZL1EpogrM4nm7MJ14FQ_PogIkuBsBRLSSPSo8
+Authorization: {{bearer}} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZTg0OTZlZjFjOWFlODhiYmUxNjU5NCIsImxhc3RuYW1lIjoiQXJvdW5hIiwiZmlyc3RuYW1lIjoiQU1BRE9VIiwidXNlcm5hbWUiOiJrMGQzLnMwbjFrQGdtYWlsLmNvbSIsInBob25lIjoyMjg5Mjk0MjYwNCwiZW1haWwiOiJrMGQzLnMwbjFrQGdtYWlsLmNvbSIsImdlbmRlciI6IlUiLCJyb2xlIjoidXNlciIsImRlZmF1bHRVc2VybmFtZSI6ZmFsc2UsImF1dGhNZXRob2RzIjpbXSwicGFzc3dvcmQiOiIkMmIkMTAkdDZFL2hHOVN1NlJ5ZDUucXlaNU9kZXhzYU9UOVVab1VCV0YuRGJtNmlhYXJhaTlEN05URDIiLCJpc0FjdGl2ZSI6dHJ1ZSwiY29tcGxldGVkIjpmYWxzZSwiaW50ZXJlc3RzIjpbXSwiZGVsZXRlZEF0IjpudWxsLCJjb25maXJtZWRBdCI6IjIwMjQtMDktMTZUMTU6MDY6NTUuNTQxWiIsInJlZmVycmFsQ29kZSI6IkswRHo0aWM3cThwIiwicmVmZXJyZWRCeSI6bnVsbCwiY3JlYXRlZEF0IjoiMjAyNC0wOS0xNlQxNTowNjoyMi45OTNaIiwidXBkYXRlZEF0IjoiMjAyNC0wOS0xNlQxNTowNjoyMi45OTNaIiwiaWF0IjoxNzI2NDk5MjE1LCJleHAiOjE3MjY1MDI4MTV9.7fA41LA83vJO-gov6nbBnQUJFWcF7tphYN8qaOQuqOE
 ###
 
 

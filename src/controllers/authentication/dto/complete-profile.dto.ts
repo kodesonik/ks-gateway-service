@@ -39,7 +39,11 @@ export class CompleteProfileDto {
   // role: string;
 
   @ApiProperty()
-  @Transform(({ value }) => new Date(value))
+  @Transform(({ value }) => {
+    // recieved format: 30/01/2000
+    const formatedDate = value.split('/').reverse().join('-');
+    return new Date(formatedDate);
+  })
   @IsDate()
   // Set max date Must have 10yrs old
   @MaxDate(
