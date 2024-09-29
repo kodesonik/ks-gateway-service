@@ -165,7 +165,7 @@ Content-Type: application/json
 Authorization: {{bearer}} {{otp_token}}
 
 {
-    "otp": "471819",
+    "otp": "669003",
     "device": {
         "id": "skdfsjdfhkw23232",
         "platform": "android",
@@ -179,14 +179,14 @@ Authorization: {{bearer}} {{otp_token}}
 # @name complete_profile
 POST {{base_url}}/auth/complete-profile
 Content-Type: application/json
-Authorization: {{bearer}} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZDFmZjU4ZjEyYzA4ZjY1ZGQ0MDc1ZCIsInVzZXJuYW1lIjoiKzIyODcxMjU1NjM1NDIzMCIsInBob25lIjoyMjg3MTI1NTYzNSwiZ2VuZGVyIjoiVSIsInJvbGUiOiJ1c2VyIiwiZGVmYXVsdFVzZXJuYW1lIjp0cnVlLCJhdXRoTWV0aG9kcyI6WyJwaG9uZSJdLCJpc0FjdGl2ZSI6dHJ1ZSwiY29tcGxldGVkIjpmYWxzZSwiaW50ZXJlc3RzIjpbXSwiY3JlYXRlZEF0IjoiMjAyNC0wOC0zMFQxNzoyMDoyNC42NzBaIiwidXBkYXRlZEF0IjoiMjAyNC0wOC0zMFQxNzoyMDoyNC42NzBaIiwiaWF0IjoxNzI1MDM4NDI0LCJleHAiOjE3MjUwNDIwMjR9.UBe6_iXIFGJaBRvl40nylV1xftE46hoXkrD0YGIO8Jc
+Authorization: {{bearer}} eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Zjk3ZjcyMDcwNWMxYjg0OTkwMmYwOCIsInVzZXJuYW1lIjoiKzIyODcxMjU1NjM1OTE1NiIsInBob25lIjoyMjg3MTI1NTYzNSwiZ2VuZGVyIjoiVSIsInJvbGUiOiJ1c2VyIiwiZGVmYXVsdFVzZXJuYW1lIjp0cnVlLCJhdXRoTWV0aG9kcyI6WyJwaG9uZSJdLCJpc0FjdGl2ZSI6dHJ1ZSwiY29tcGxldGVkIjpmYWxzZSwiaW50ZXJlc3RzIjpbXSwiZGVsZXRlZEF0IjpudWxsLCJjb25maXJtZWRBdCI6bnVsbCwicmVmZXJyYWxDb2RlIjpudWxsLCJyZWZlcnJlZEJ5IjpudWxsLCJjcmVhdGVkQXQiOiIyMDI0LTA5LTI5VDE2OjI1OjIyLjY2NloiLCJ1cGRhdGVkQXQiOiIyMDI0LTA5LTI5VDE2OjI1OjIyLjY2NloiLCJpYXQiOjE3Mjc2MjcxMjIsImV4cCI6MTcyNzYzMDcyMn0.kR7xa8u-ByKGF6fryxyEAqCK6UpsCI0C8eVx28nv6Xc
 
 {
     "firstname": "John",
     "lastname": "Doe",
     "username": "johndoe17",
     "email": "aroamadou@gmail.com",
-    "birthdate": "2010-01-01",
+    "birthdate": "30/01/2010",
     "address": "Jl. Jend. Sudirman No. 1",
     "interests": ["football", "music", "dance"]
 }

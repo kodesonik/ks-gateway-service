@@ -41,7 +41,11 @@ export class CompleteProfileDto {
   @ApiProperty()
   @Transform(({ value }) => {
     // recieved format: 30/01/2000
-    const formatedDate = value.split('/').reverse().join('-');
+    console.log(value);
+    const formatedDate =
+      value && typeof value === 'string' && value?.includes('/')
+        ? value?.split('/')?.reverse()?.join('-')
+        : value;
     return new Date(formatedDate);
   })
   @IsDate()
